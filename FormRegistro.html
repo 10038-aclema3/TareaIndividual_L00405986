@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LOGISTICA</title>
+  </head>
+  <body>
+    <form action="#" method="GET" name="FormDireccion" target="_blank">
+       <fieldset>
+         <legend>DIRECCION DE ENVIO</legend>
+         Calle Principal <br>
+         <input type="text" name="txtPrincipal" value="">
+         <br><br>
+         Transversal<br>
+         <input type="text" name="txtTransversal" value="">
+        
+		<br><br>
+		<input type="checkbox" name="chbEntrega1" value="PROPIETARIO"> Entrega al propietario.<br>
+        <input type="checkbox" name="chbEntrega2" value="TERCERO"> Entrega a un tercero.<br>
+
+         <br><br>
+         Cantones: <select  name="cmbCantones">
+					<option value="Quito">Quito</option>
+					<option value="Cayambe">Cayambe</option>
+					<option value="Mejia">Mejia</option>
+          <option value="Rumiñahui">Rumiñahui</option>
+          <option value="Los Banco">Los Banco</option>
+			 
+         </select>
+		 
+         <br><br>
+           <input type="submit" name="SubmitDireccion" value="ENVIAR DATOS">
+       </fieldset>
+    </form>
+	
+	<br>
+    <form action="#" method="POST" name="FormConfidencial" target="_blank">
+       <fieldset>
+         <legend>INFORMACIÓN CONFIDENCIAL</legend>
+         Código Postal: 
+         <input type="password" name="pswCodigoPostal" value="">
+         
+		 <br><br>
+         Referencia de la Dirección:<br>
+         <textarea name="Mensaje" rows="3" cols="30" id="Mensaje"></textarea><br>
+         <br>
+           <input type="submit" name="SubmitConfidencial" value="Guardar">
+       </fieldset>
+    </form>
+
+<script>
+  // Obtener elementos HTML
+  const entregaPropietario = document.querySelector('input[name="chbEntrega1"]');
+  const entregaTercero = document.querySelector('input[name="chbEntrega2"]');
+  const formularioConfidencial = document.querySelector('form[name="FormConfidencial"]');
+  const botonEnviar = document.querySelector('input[name="SubmitDireccion"]');
+  
+  // Desactivar el botón de "ENVIAR DATOS" al cargar la página
+  botonEnviar.disabled = true;
+  
+  // Agregar un evento al botón de "Entrega al propietario" para habilitar el botón de "ENVIAR DATOS" si está seleccionado
+  entregaPropietario.addEventListener('change', () => {
+    botonEnviar.disabled = !entregaPropietario.checked;
+  });
+  
+  // Ocultar el formulario de "INFORMACIÓN CONFIDENCIAL" al cargar la página
+  formularioConfidencial.style.display = 'none';
+  
+  // Agregar un evento al botón de "Entrega a un tercero" para mostrar u ocultar el formulario de "INFORMACIÓN CONFIDENCIAL"
+  entregaTercero.addEventListener('change', () => {
+    formularioConfidencial.style.display = entregaTercero.checked ? 'block' : 'none';
+  });
+</script>
+
+
+  </body>
+</html>
